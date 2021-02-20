@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hola mundo</title>
+</head>
+<body>
+	<h1>Hola Mundo {{nombre}}</h1>
+	<p>Tu edad es {{edad}}</p>
+	<p>Lista de materias</p>
+	<ul>
+		{% for materia in materias %}
+			<li>{{materia}}</li>
+		{% endfor %}
+	</ul>
+</body>
+</html>
