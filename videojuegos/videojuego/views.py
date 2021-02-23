@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Categoria, Videojuego
 from .form_categoria import CategoriaForm
 
-# Create your views here.
-
+# CATEGORIAS
 def lista_categoria(request):
     categorias= Categoria.objects.all()
     return render(request,'lista_categorias.html',{'categorias':categorias})
@@ -41,6 +40,7 @@ def nuevo_categoria(request):
     return render(request,'nuevo_categoria.html',context )
 
 
+# VIDEOJUEGOS
 def lista_videojuegos(request):
     videojuegos = Videojuego.objects.all()
     return render(request,'lista_videojuegos.html',{'videojuegos':videojuegos})
