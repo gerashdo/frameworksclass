@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Categoria, Videojuego
 from .form_categoria import CategoriaForm
+from .form_videojuego import VideojuegoForm
 
 # CATEGORIAS
 def lista_categoria(request):
@@ -37,7 +38,7 @@ def nuevo_categoria(request):
     context = {
         'form' : form
     }
-    return render(request,'nuevo_categoria.html',context )
+    return render(request,'nuevo_categoria.html',context)
 
 
 # VIDEOJUEGOS
@@ -49,3 +50,11 @@ def eliminar_videojuego(request, id):
     videojuego = Videojuego.objects.get(id=id)
     videojuego.delete()
     return redirect('videojuego:lista_videojuegos')
+
+def nuevo_videojuego(reques):
+    form = VideojuegoForm
+
+    context = {
+        'form' : form
+    }
+    return render(reques,'nuevo_videojuego.html', context)
