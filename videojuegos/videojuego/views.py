@@ -51,10 +51,16 @@ def eliminar_videojuego(request, id):
     videojuego.delete()
     return redirect('videojuego:lista_videojuegos')
 
-def nuevo_videojuego(reques):
+def nuevo_videojuego(request):
     form = VideojuegoForm
+
+    if request.method == 'POST':
+        form = VideojuegoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('videojuego:lista_videojuegos')
 
     context = {
         'form' : form
     }
-    return render(reques,'nuevo_videojuego.html', context)
+    return render(request,'nuevo_videojuego.html', context)
