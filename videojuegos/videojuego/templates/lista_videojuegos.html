@@ -30,6 +30,7 @@
                     <td>{{videojuego.descripcion}}</td>
                     <td>
                         <a href="{% url 'videojuego:eliminar_videojuego' videojuego.id %}">Eliminar</a>
+                        <a href="{% url 'videojuego:editar_videojuego' videojuego.id %}">Editar</a>
                     </td>
                 </tr>
             {% endfor %}

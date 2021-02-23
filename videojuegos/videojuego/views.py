@@ -64,3 +64,18 @@ def nuevo_videojuego(request):
         'form' : form
     }
     return render(request,'nuevo_videojuego.html', context)
+
+def editar_videojuego(request, id):
+    videojuego = Videojuego.objects.get(id=id)
+    form = VideojuegoForm(instance=videojuego)
+
+    if request.method == 'POST':
+        form = VideojuegoForm(request.POST, instance=videojuego)
+        if form.is_valid():
+            form.save()
+            return redirect('videojuego:lista_videojuegos')
+
+    context = {
+        'form' : form
+    }
+    return render(request, 'editar_videojuego.html', context)
