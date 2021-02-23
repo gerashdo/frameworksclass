@@ -13,6 +13,19 @@ def eliminar_categoria(request, id):
     categoria.delete()
     return redirect('categoria:lista_categoria')
 
+def editar_categoria(request, id):
+    categoria = Categoria.objects.get(id=id)
+    form = CategoriaForm(instance=categoria)
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST, instance=categoria)
+        if form.is_valid():
+            form.save()
+            return redirect('categoria:lista_categoria')
+    context = {
+        'form' : form
+    }     
+    return render(request,'editar_categoria.html',context)
+
 def nuevo_categoria(request):
     form = CategoriaForm
 
