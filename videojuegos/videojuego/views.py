@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Categoria, Videojuego
 from .form_categoria import CategoriaForm
 from .form_videojuego import VideojuegoForm
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 # CATEGORIAS
 def lista_categoria(request):
@@ -79,3 +82,17 @@ def editar_videojuego(request, id):
         'form' : form
     }
     return render(request, 'editar_videojuego.html', context)
+
+class VideojuegoList(ListView):
+    model = Videojuego
+    #extra_context = {'variable' : valor}
+    #queryset = Videojuego.objects.filter(anio=1992)
+
+class VideojuegoEliminar(DeleteView):
+    model = Videojuego
+    success_url = reverse_lazy('videojuego:lista_videojuegos')
+
+class VideojuegoCrear(CreateView):
+    model = Videojuego
+    fields = '__all__'
+    success_url = reverse_lazy('videojuego:lista_videojuegos')
