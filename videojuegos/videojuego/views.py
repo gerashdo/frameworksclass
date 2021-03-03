@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 # CATEGORIAS
 def lista_categoria(request):
     categorias= Categoria.objects.all()
-    return render(request,'lista_categorias.html',{'categorias':categorias})
+    return render(request,'categorias/lista_categorias.html',{'categorias':categorias})
 
 def eliminar_categoria(request, id):
     categoria = get_object_or_404(Categoria, id=id)
@@ -46,43 +46,44 @@ def nuevo_categoria(request):
 
 
 # VIDEOJUEGOS
-def lista_videojuegos(request):
-    videojuegos = Videojuego.objects.all()
-    return render(request,'lista_videojuegos.html',{'videojuegos':videojuegos})
 
-def eliminar_videojuego(request, id):
-    videojuego = Videojuego.objects.get(id=id)
-    videojuego.delete()
-    return redirect('videojuego:lista_videojuegos')
+# def lista_videojuegos(request):
+#     videojuegos = Videojuego.objects.all()
+#     return render(request,'lista_videojuegos.html',{'videojuegos':videojuegos})
 
-def nuevo_videojuego(request):
-    form = VideojuegoForm
+# def eliminar_videojuego(request, id):
+#     videojuego = Videojuego.objects.get(id=id)
+#     videojuego.delete()
+#     return redirect('videojuego:lista_videojuegos')
 
-    if request.method == 'POST':
-        form = VideojuegoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('videojuego:lista_videojuegos')
+# def nuevo_videojuego(request):
+#     form = VideojuegoForm
 
-    context = {
-        'form' : form
-    }
-    return render(request,'nuevo_videojuego.html', context)
+#     if request.method == 'POST':
+#         form = VideojuegoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('videojuego:lista_videojuegos')
 
-def editar_videojuego(request, id):
-    videojuego = Videojuego.objects.get(id=id)
-    form = VideojuegoForm(instance=videojuego)
+#     context = {
+#         'form' : form
+#     }
+#     return render(request,'nuevo_videojuego.html', context)
 
-    if request.method == 'POST':
-        form = VideojuegoForm(request.POST, instance=videojuego)
-        if form.is_valid():
-            form.save()
-            return redirect('videojuego:lista_videojuegos')
+# def editar_videojuego(request, id):
+#     videojuego = Videojuego.objects.get(id=id)
+#     form = VideojuegoForm(instance=videojuego)
 
-    context = {
-        'form' : form
-    }
-    return render(request, 'editar_videojuego.html', context)
+#     if request.method == 'POST':
+#         form = VideojuegoForm(request.POST, instance=videojuego)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('videojuego:lista_videojuegos')
+
+#     context = {
+#         'form' : form
+#     }
+#     return render(request, 'editar_videojuego.html', context)
 
 class VideojuegoList(ListView):
     model = Videojuego
