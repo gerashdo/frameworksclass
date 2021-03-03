@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categoria, Videojuego
 from .form_categoria import CategoriaForm
 from .form_videojuego import VideojuegoForm
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 
@@ -12,7 +13,7 @@ def lista_categoria(request):
     return render(request,'lista_categorias.html',{'categorias':categorias})
 
 def eliminar_categoria(request, id):
-    categoria = Categoria.objects.get(id=id)
+    categoria = get_object_or_404(Categoria, id=id)
     categoria.delete()
     return redirect('categoria:lista_categoria')
 
@@ -95,4 +96,14 @@ class VideojuegoEliminar(DeleteView):
 class VideojuegoCrear(CreateView):
     model = Videojuego
     fields = '__all__'
+    extra_context = {'etiqueta':'Nuevo', 'boton':'Agregar'}
     success_url = reverse_lazy('videojuego:lista_videojuegos')
+
+class VideojuegoActualizar(UpdateView):
+    model = Videojuego
+    fields = '__all__'
+    extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
+    success_url = reverse_lazy('videojuego:lista_vidojuegos')
+
+class VideojuegoDetalle(DetailView):
+    model = Videojuego
