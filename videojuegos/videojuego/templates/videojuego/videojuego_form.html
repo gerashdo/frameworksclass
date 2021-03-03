@@ -6,9 +6,11 @@
 
 {% block contenido %}
     <h1>{{etiqueta}} Videojuego</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">{{boton}}</button>
-    </form>
+    <div class="mb-3 row">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-secondary">{{boton}}</button>
+        </form>
+    </div>
 {% endblock contenido %}

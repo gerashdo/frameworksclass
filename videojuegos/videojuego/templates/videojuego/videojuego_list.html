@@ -5,8 +5,12 @@
 
 {% block contenido %}
 <h1>Videojuegos</h1>
-    <a href="{% url 'videojuego:nuevo_videojuego' %}">Agregar Videojuego</a>
-    <table>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'videojuego:nuevo_videojuego' %}">
+            <button type="button" class="btn btn-secondary">Agregar Videojuego</button>
+        </a>
+    </div>
+    <table class="table table-striped">
         <thead>
             <th>ID</th>
             <th>Titulo</th>
