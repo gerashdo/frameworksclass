@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Actiualizar Categoria
+    Nueva Categoria
 {% endblock titulo %}
 
 {% block contenido %}
-    <h1>Actualizar Categoria</h1>
+    <h1>{{etiqueta}} Categoria</h1>
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Guardar</button>
+        <button type="submit">{{boton}}</button>
     </form>
 {% endblock contenido %}

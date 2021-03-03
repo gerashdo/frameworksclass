@@ -26,9 +26,11 @@ def editar_categoria(request, id):
             form.save()
             return redirect('categoria:lista_categoria')
     context = {
-        'form' : form
+        'form' : form,
+        'etiqueta' : 'Editar',
+        'boton' : 'Guardar',
     }     
-    return render(request,'editar_categoria.html',context)
+    return render(request,'categorias/form_categoria.html',context)
 
 def nuevo_categoria(request):
     form = CategoriaForm
@@ -40,9 +42,11 @@ def nuevo_categoria(request):
             return redirect('categoria:lista_categoria')
 
     context = {
-        'form' : form
+        'form' : form,
+        'etiqueta' : 'Nueva',
+        'boton' : 'Agregar',
     }
-    return render(request,'nuevo_categoria.html',context)
+    return render(request,'categorias/form_categoria.html',context)
 
 
 # VIDEOJUEGOS
