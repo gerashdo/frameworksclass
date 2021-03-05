@@ -1,41 +1,41 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block titulo %}
   Lista Videojuegos
 {% endblock titulo %}
 
 {% block contenido %}
-<h1>Videojuegos</h1>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="{% url 'videojuego:nuevo_videojuego' %}">
-            <button type="button" class="btn btn-secondary">Agregar Videojuego</button>
-        </a>
+<h1 class="app-page-title">VideoJuegos</h1>
+    <div class="card">
+        <div class="cad-body">
+                <table class="table">
+                    <thead>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Año</th>
+                        <th>Categoria</th>
+                        <th>Precio</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                        {% for videojuego in object_list %}
+                        <tr>
+                            <td>{{videojuego.id}}</td>
+                            <td>{{videojuego.titulo}}</td>
+                            <td>{{videojuego.anio}}</td>
+                            <td>{{videojuego.categoria}}</td>
+                            <td>{{videojuego.precio}}</td>
+                            <td>{{videojuego.descripcion}}</td>
+                            <td>
+                                <a href="{% url 'videojuego:detalles_videojuego' videojuego.id %}">Detalles</a>
+                                <a href="{% url 'videojuego:eliminar_videojuego' videojuego.id %}">Eliminar</a>
+                                <a href="{% url 'videojuego:editar_videojuego' videojuego.id  %}">Editar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
     </div>
-    <table class="table table-striped">
-        <thead>
-            <th>ID</th>
-            <th>Titulo</th>
-            <th>Año</th>
-            <th>Categoria</th>
-            <th>Precio</th>
-            <th>Descripcion</th>
-            <th>Acciones</th>
-        </thead>
-        <tbody>
-            {% for videojuego in object_list %}
-                <tr>
-                    <td>{{videojuego.id}}</td>
-                    <td>{{videojuego.titulo}}</td>
-                    <td>{{videojuego.anio}}</td>
-                    <td>{{videojuego.categoria}}</td>
-                    <td>{{videojuego.precio}}</td>
-                    <td>{{videojuego.descripcion}}</td>
-                    <td>
-                        <a href="{% url 'videojuego:detalles_videojuego' videojuego.id %}">Detalles</a>
-                        <a href="{% url 'videojuego:eliminar_videojuego' videojuego.id %}">Eliminar</a>
-                        <a href="{% url 'videojuego:editar_videojuego' videojuego.id  %}">Editar</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 {% endblock contenido %}
+        
