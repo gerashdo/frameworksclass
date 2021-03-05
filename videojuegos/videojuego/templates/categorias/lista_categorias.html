@@ -1,33 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block titulo %}
     Categorias
 {% endblock titulo %}
 
 {% block contenido %}
-    <h1>Lista de categorias</h1>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="{% url 'categoria:nuevo_categoria' %}">
-            <button class="btn btn-secondary">Agregar Nueva</button>
-        </a>
-    </div>
-        <table class="table table-striped">
-        <thead>
-            <th>ID</th>
-            <th>Nombre Categoria</th>
-            <th>Acciones</th>
-        </thead>
-        <tbody>
-            {% for categoria in categorias %}
-                <tr>
-                    <td>{{categoria.id}}</td>
-                    <td>{{categoria.nombre}}</td>
-                    <td>
-                        <a href="{% url 'categoria:editar_categoria' categoria.id %}">Editar</a>
-                        <a href="{% url 'categoria:eliminar_categoria' categoria.id %}">Eliminar</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1 class="app-page-title">Lista de categorias</h1>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <th>ID</th>
+                        <th>Nombre Categoria</th>
+                        <th>Acciones</th>
+                    </thead>
+                    <tbody>
+                        {% for categoria in categorias %}
+                        <tr>
+                            <td>{{categoria.id}}</td>
+                            <td>{{categoria.nombre}}</td>
+                            <td>
+                                <a href="{% url 'categoria:editar_categoria' categoria.id %}">Editar</a>
+                                <a href="{% url 'categoria:eliminar_categoria' categoria.id %}">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 {% endblock contenido %}
