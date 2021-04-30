@@ -6,6 +6,9 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import VideojuegoSerializer, CategoriaSerializer
 
 # CATEGORIAS
 def lista_categoria(request):
@@ -112,3 +115,19 @@ class VideojuegoActualizar(UpdateView):
 
 class VideojuegoDetalle(DetailView):
     model = Videojuego
+
+class VideojuegoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Videojuego.objects.all().order_by('id')
+    serializer_class = VideojuegoSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+class CategoriaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+    # permission_classes = [permissions.IsAuthenticated]
